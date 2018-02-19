@@ -1,0 +1,21 @@
+{
+  "name": "@foreman/typescript",
+  "version": "1.0.0",
+  "description": "TypeScript utilities",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "repository":
+    "https://github.com/kasperisager/foreman/tree/master/packages/typescript",
+  "author": "Kasper Isager <kasperisager@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "tsc --outDir dist"
+  },
+  "dependencies": {
+    "@foreman/api": "^1.0.0",
+    "@foreman/error": "^1.0.0",
+    "@types/node": "^9.4.6",
+    "tsconfig": "^7.0.0",
+    "typescript": "^2.7.2"
+  }
+}

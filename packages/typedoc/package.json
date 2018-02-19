@@ -1,0 +1,18 @@
+{
+  "name": "@foreman/typedoc",
+  "version": "1.0.0",
+  "description": "TypeDoc utilities",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "repository":
+    "https://github.com/kasperisager/foreman/tree/master/packages/typedoc",
+  "author": "Kasper Isager <kasperisager@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "tsc --outDir dist"
+  },
+  "dependencies": {
+    "tsconfig": "^7.0.0",
+    "typedoc": "^0.10.0"
+  }
+}

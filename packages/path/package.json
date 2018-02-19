@@ -1,0 +1,14 @@
+{
+  "name": "@foreman/path",
+  "version": "1.0.0",
+  "description": "Path utilities",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "repository":
+    "https://github.com/kasperisager/foreman/tree/master/packages/path",
+  "author": "Kasper Isager <kasperisager@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "tsc --outDir dist"
+  }
+}

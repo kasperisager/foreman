@@ -1,0 +1,19 @@
+{
+  "name": "@foreman/prettier",
+  "version": "1.0.0",
+  "description": "Prettier utilities",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "repository":
+    "https://github.com/kasperisager/foreman/tree/master/packages/prettier",
+  "author": "Kasper Isager <kasperisager@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "tsc --outDir dist"
+  },
+  "dependencies": {
+    "@foreman/api": "^1.0.0",
+    "@types/prettier": "^1.10.0",
+    "prettier": "^1.10.2"
+  }
+}

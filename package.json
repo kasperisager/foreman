@@ -1,0 +1,23 @@
+{
+  "name": "foreman",
+  "version": "1.0.0",
+  "description": "Build system tools for getting things done",
+  "main": "index.js",
+  "repository": "https://github.com/kasperisager/foreman",
+  "author": "Kasper Isager <kasperisager@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "precommit": "pretty-quick --staged"
+  },
+  "workspaces": ["packages/*"],
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "lerna": "^2.7.0",
+    "prettier": "1.10.2",
+    "pretty-quick": "^1.2.0",
+    "tap": "^11.0.1",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.7.2"
+  }
+}

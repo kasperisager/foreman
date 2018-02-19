@@ -1,0 +1,25 @@
+{
+  "name": "@foreman/fs",
+  "version": "1.0.0",
+  "description": "File system utilities",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "repository":
+    "https://github.com/kasperisager/foreman/tree/master/packages/fs",
+  "author": "Kasper Isager <kasperisager@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "tsc --outDir dist"
+  },
+  "dependencies": {
+    "@types/chokidar": "^1.7.4",
+    "@types/del": "^3.0.0",
+    "@types/globby": "^6.1.0",
+    "@types/make-dir": "^1.0.3",
+    "@types/node": "^9.3.0",
+    "chokidar": "^2.0.2",
+    "del": "^3.0.0",
+    "globby": "^7.1.1",
+    "make-dir": "^1.1.0"
+  }
+}

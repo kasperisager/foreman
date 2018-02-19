@@ -1,0 +1,36 @@
+import { Transform, TransformError } from "@foreman/api";
+import {
+  transpileModule,
+  TranspileOptions as Options,
+  flattenDiagnosticMessageText
+} from "typescript";
+
+const { assign } = Object;
+
+export const transform: Transform<Options> = (
+  source: string,
+  options: Options = {}
+): Promise<string> =>
+  new Promise((resolve, reject) => {
+    options = assign({}, options, { reportDiagnostics: true });
+
+    const { outputText, diagnostics } = transpileModule(source, options);
+
+    if (diagnostics && diagnostics.length !== 0) {
+      const [{ file, start, messageText }] = diagnostics;
+
+      const { line, character } = file
+        ? file.getLineAndCharacterOfPosition(start || 0)
+        : { line: 0, character: 0 };
+
+      reject(
+        new TransformError(
+          flattenDiagnosticMessageText(messageText, "\n"),
+          source,
+          { line: line + 1, column: character }
+        )
+      );
+    } else {
+      resolve(outputText);
+    }
+  });
