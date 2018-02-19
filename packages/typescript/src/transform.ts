@@ -1,4 +1,5 @@
-import { Transform, TransformError } from "@foreman/api";
+import { Transform } from "@foreman/api";
+import { SourceError } from "@foreman/error";
 import {
   transpileModule,
   TranspileOptions as Options,
@@ -24,10 +25,10 @@ export const transform: Transform<Options> = (
         : { line: 0, character: 0 };
 
       reject(
-        new TransformError(
+        new SourceError(
           flattenDiagnosticMessageText(messageText, "\n"),
           source,
-          { line: line + 1, column: character }
+          { line: line + 1, column: character + 1 }
         )
       );
     } else {

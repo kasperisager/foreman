@@ -10,9 +10,5 @@
   "license": "MIT",
   "scripts": {
     "prepare": "tsc --outDir dist"
-  },
-  "dependencies": {
-    "@babel/code-frame": "^7.0.0-beta.40",
-    "@foreman/error": "^1.0.0"
   }
 }

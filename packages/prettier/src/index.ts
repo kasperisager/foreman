@@ -3,7 +3,7 @@ import { format, Options } from "prettier";
 
 export const transform: Transform<Options> = (
   source: string,
-  options: Options
+  options: Options = {}
 ): Promise<string> =>
   new Promise((resolve, reject) => {
     try {
