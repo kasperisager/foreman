@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { isSourceError } from "@foreman/error";
 
 const wsk = require("wsk-notify");
@@ -20,10 +21,10 @@ export interface Notification {
 }
 
 export function notify({
-  message,
-  value,
+  message = "",
+  value = "",
   type,
-  desktop,
+  desktop = true,
   error
 }: Notification): void {
   let output: string = wsk({
@@ -40,9 +41,9 @@ export function notify({
     let message: string = "";
 
     if (isSourceError(error)) {
-      message += error.frame;
+      message += `\n${error}`;
     } else {
-      message += error.stack;
+      message += `\n${chalk.dim(error.stack)}`;
     }
 
     output += "\n" + message;

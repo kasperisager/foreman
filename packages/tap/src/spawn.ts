@@ -1,12 +1,17 @@
 import * as path from "path";
+import * as fs from "fs";
 import { loaderFor } from "@foreman/loader";
+import { SourceError } from "@foreman/error";
 const { Test } = require("tap");
 const Parser = require("tap-parser");
 const nyc = require.resolve("nyc/bin/nyc");
 
 const concat = <T>(a: Array<T>, b: Array<T>) => a.concat(b);
 
+const read = (path: string) => fs.readFileSync(path, "utf8");
+
 export type Options = {
+  readonly loader?: string;
   readonly require?: Array<string>;
   readonly concurrency?: number;
   readonly timeout?: number;
@@ -18,7 +23,7 @@ export interface Assertion {
   readonly ok: boolean;
   readonly skip: boolean;
   readonly todo: boolean;
-  readonly diagnotics?: any;
+  readonly error?: Error;
 }
 
 export interface Result {
@@ -39,16 +44,29 @@ export async function spawn(
     const children: Array<Result> = [];
     const assertions: Array<Assertion> = [];
 
+    test.on("extra", (line: string) => console.log(line.trim()));
+
     test.on("child", (test: any) => attach(test, children));
 
     test.on("assert", (assertion: any) => {
+      const { name, id, ok, skip, todo, diag } = assertion;
+
+      let error: SourceError | undefined;
+
+      if (diag) {
+        const { stack, at: { file, line, column } } = diag;
+        error = new SourceError(name, read(file), { line, column });
+        error.file = file;
+        error.stack = stack;
+      }
+
       assertions.push({
-        name: assertion.name,
-        id: assertion.id,
-        ok: assertion.ok,
-        skip: assertion.skip || false,
-        todo: assertion.todo || false,
-        diagnotics: assertion.diag
+        name,
+        id,
+        ok,
+        skip: skip || false,
+        todo: todo || false,
+        error
       });
     });
 
@@ -68,7 +86,7 @@ export async function spawn(
     .map(module => ["--require", module])
     .reduce(concat, []);
 
-  const loader = loaderFor(file);
+  const loader = options.loader || loaderFor(file);
 
   if (loader) {
     requires.push("--require", loader);
@@ -83,8 +101,10 @@ export async function spawn(
   test.pipe(parser);
 
   await test.spawn(
-    nyc,
-    ["--silent", "--cache", "--", "node", ...requires, spec],
+    // nyc,
+    // ["--silent", "--cache", "--", "node", ...requires, spec],
+    "node",
+    [...requires, spec],
     {
       // Buffer the spawned test in order to benefit from parallelism
       buffered: true,

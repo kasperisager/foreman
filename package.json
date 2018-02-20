@@ -8,6 +8,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "prepare": "lerna run prepare",
     "precommit": "pretty-quick --staged"
   },
   "workspaces": ["packages/*"],

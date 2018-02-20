@@ -24,13 +24,17 @@ export const transform: Transform<Options> = (
         ? file.getLineAndCharacterOfPosition(start || 0)
         : { line: 0, character: 0 };
 
-      reject(
-        new SourceError(
-          flattenDiagnosticMessageText(messageText, "\n"),
-          source,
-          { line: line + 1, column: character + 1 }
-        )
+      const error = new SourceError(
+        flattenDiagnosticMessageText(messageText, "\n"),
+        source,
+        { line: line + 1, column: character + 1 }
       );
+
+      if (options.filepath) {
+        error.file = options.filepath;
+      }
+
+      reject(error);
     } else {
       resolve(outputText);
     }

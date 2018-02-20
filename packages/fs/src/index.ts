@@ -1,3 +1,4 @@
+export * from "./exists";
 export * from "./expand";
 export * from "./read";
 export * from "./remove";
