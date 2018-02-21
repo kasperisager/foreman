@@ -21,7 +21,7 @@ export async function diagnose(
       ? file.getLineAndCharacterOfPosition(start || 0)
       : { line: 0, character: 0 };
 
-    return new SourceError(
+    const error = new SourceError(
       flattenDiagnosticMessageText(messageText, "\n"),
       source,
       {
@@ -29,5 +29,9 @@ export async function diagnose(
         column: character + 1
       }
     );
+
+    error.file = path;
+
+    return error;
   });
 }

@@ -30,8 +30,8 @@ export const transform: Transform<Options> = (
         { line: line + 1, column: character + 1 }
       );
 
-      if (options.filepath) {
-        error.file = options.filepath;
+      if (options.fileName) {
+        error.file = options.fileName;
       }
 
       reject(error);

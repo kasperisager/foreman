@@ -25,7 +25,13 @@ const { argv } = yargs.command("* <script>", "", {
         args.push(...argv._);
       }
 
-      exec("node", args, { stdio: "inherit" });
+      exec("node", args, { stdio: "inherit" })
+        .then(({ code }) => {
+          process.exit(code);
+        })
+        .catch(({ code }) => {
+          process.exit(code);
+        });
     }
   }
 });

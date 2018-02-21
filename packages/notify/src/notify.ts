@@ -35,18 +35,18 @@ export function notify({
       desktop
     },
     silent: true
-  });
+  }).trim();
 
   if (type === "error" && error) {
     let message: string = "";
 
     if (isSourceError(error)) {
       message += `\n${error}`;
-    } else {
+    } else if (error.stack) {
       message += `\n${chalk.dim(error.stack)}`;
     }
 
-    output += "\n" + message;
+    output += "\n" + message + "\n";
   }
 
   console.log(output);
