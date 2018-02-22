@@ -1,17 +1,14 @@
 import * as path from "path";
 import * as fs from "fs";
-import { loaderFor } from "@foreman/loader";
 import { SourceError } from "@foreman/error";
 const { Test } = require("tap");
 const Parser = require("tap-parser");
-const nyc = require.resolve("nyc/bin/nyc");
 
 const concat = <T>(a: Array<T>, b: Array<T>) => a.concat(b);
 
 const read = (path: string) => fs.readFileSync(path, "utf8");
 
 export type Options = {
-  readonly loader?: string;
   readonly require?: Array<string>;
   readonly concurrency?: number;
   readonly timeout?: number;
@@ -86,12 +83,6 @@ export async function spawn(
     .map(module => ["--require", module])
     .reduce(concat, []);
 
-  const loader = options.loader || loaderFor(file);
-
-  if (loader) {
-    requires.push("--require", loader);
-  }
-
   const spec = path.relative(process.cwd(), file);
 
   const test = new Test();
@@ -100,15 +91,20 @@ export async function spawn(
 
   test.pipe(parser);
 
+  let node: string = "node";
+
+  switch (path.extname(file)) {
+    case ".ts":
+    case ".tsx":
+      node = "ts-node";
+  }
+
   await test.spawn(
-    // nyc,
-    // ["--silent", "--cache", "--", "node", ...requires, spec],
-    "node",
+    node,
     [...requires, spec],
     {
       // Buffer the spawned test in order to benefit from parallelism
       buffered: true,
-
       timeout: options.timeout || null
     },
     spec

@@ -4,6 +4,7 @@ import * as path from "path";
 import * as crypto from "crypto";
 import * as TS from "typescript";
 import * as tsconfig from "tsconfig";
+import { getOptions } from "../get-options";
 
 const { assign } = Object;
 
@@ -44,26 +45,8 @@ class InMemoryLanguageServiceHost implements LanguageServiceHost {
   private readonly directory: string;
 
   public constructor(cwd: string = process.cwd()) {
-    const configPath = tsconfig.findSync(cwd);
-
-    if (!configPath) {
-      throw new Error("No TypeScript configuration found");
-    }
-
-    this.directory = path.dirname(path.resolve(configPath));
-
-    const { config } = TS.parseConfigFileTextToJson(
-      configPath,
-      this.readFile(configPath, "utf8") || ""
-    );
-
-    const { options } = TS.parseJsonConfigFileContent(
-      config,
-      TS.sys,
-      this.getCurrentDirectory()
-    );
-
-    this.options = options;
+    this.directory = cwd;
+    this.options = getOptions(cwd);
   }
 
   public useCaseSensitiveFileNames(): boolean {

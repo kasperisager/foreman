@@ -5,6 +5,7 @@ import {
   TranspileOptions as Options,
   flattenDiagnosticMessageText
 } from "typescript";
+import { getOptions } from "./get-options";
 
 const { assign } = Object;
 
@@ -14,6 +15,10 @@ export const transform: Transform<Options> = (
 ): Promise<string> =>
   new Promise((resolve, reject) => {
     options = assign({}, options, { reportDiagnostics: true });
+
+    if (options.fileName) {
+      assign(options, { compilerOptions: getOptions(options.fileName) });
+    }
 
     const { outputText, diagnostics } = transpileModule(source, options);
 
