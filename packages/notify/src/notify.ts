@@ -17,7 +17,12 @@ export interface Notification {
     | "remove"
     | "serve";
   readonly desktop?: boolean;
+  readonly console?: boolean;
   readonly error?: Error;
+}
+
+function log(message: string) {
+  console.log(message);
 }
 
 export function notify({
@@ -25,6 +30,7 @@ export function notify({
   value = "",
   type,
   desktop = true,
+  console = true,
   error
 }: Notification): void {
   let output: string = wsk({
@@ -49,5 +55,7 @@ export function notify({
     output += "\n" + message + "\n";
   }
 
-  console.log(output);
+  if (console) {
+    log(output);
+  }
 }
