@@ -1,6 +1,6 @@
 import * as path from "path";
 
-interface Error {
+export interface Error {
   file: string;
   message: string;
   line: number;

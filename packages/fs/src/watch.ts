@@ -1,6 +1,6 @@
 import * as chokidar from "chokidar";
 
-type Event = "add" | "change" | "unlink";
+export type Event = "add" | "change" | "unlink";
 
 export async function watch<E extends Event>(
   paths: string | Array<string>,
