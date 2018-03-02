@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { isSourceError } from "@foreman/error";
+import { isSourceError, isAssertionError } from "@foreman/error";
 
 const wsk = require("wsk-notify");
 
@@ -40,7 +40,7 @@ export function notify({
   if (type === "error" && error) {
     let message: string = "";
 
-    if (isSourceError(error)) {
+    if (isSourceError(error) || isAssertionError(error)) {
       message += `\n${error}`;
     } else if (error.stack) {
       message += `\n${chalk.dim(error.stack)}`;

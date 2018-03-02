@@ -2,7 +2,7 @@ import chalk from "chalk";
 const { codeFrameColumns } = require("@babel/code-frame");
 const cleanStack = require("clean-stack");
 
-type Location = { line: number; column: number };
+export type Location = { line: number; column: number };
 
 export class SourceError implements Error {
   public readonly name: string = "SourceError";

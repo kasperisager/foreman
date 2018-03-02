@@ -1,6 +1,6 @@
 import * as path from "path";
 import * as fs from "fs";
-import { SourceError } from "@foreman/error";
+import { AssertionError } from "@foreman/error";
 const { Test } = require("tap");
 const Parser = require("tap-parser");
 
@@ -48,11 +48,20 @@ export async function spawn(
     test.on("assert", (assertion: any) => {
       const { name, id, ok, skip, todo, diag } = assertion;
 
-      let error: SourceError | undefined;
+      let error: AssertionError | undefined;
 
       if (diag) {
         const { stack, at: { file, line, column } } = diag;
-        error = new SourceError(name, read(file), { line, column });
+
+        error = new AssertionError(
+          name,
+          read(file),
+          "found" in diag && "wanted" in diag
+            ? { actual: diag.found, expected: diag.wanted }
+            : null,
+          { line, column }
+        );
+
         error.file = file;
         error.stack = stack;
       }
