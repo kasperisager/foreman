@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Prettier utilities",
   "main": "dist/index.js",
-  "types": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
   "repository":
     "https://github.com/kasperisager/foreman/tree/master/packages/prettier",
   "author": "Kasper Isager <kasperisager@gmail.com>",

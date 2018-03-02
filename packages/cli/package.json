@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "A simple CLI for executing build scripts",
   "main": "dist/index.js",
-  "types": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "bin"],
   "bin": {
     "foreman": "bin/foreman.js"
   },

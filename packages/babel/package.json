@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Babel utilities",
   "main": "dist/index.js",
-  "types": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
   "repository":
     "https://github.com/kasperisager/foreman/tree/master/packages/babel",
   "author": "Kasper Isager <kasperisager@gmail.com>",
