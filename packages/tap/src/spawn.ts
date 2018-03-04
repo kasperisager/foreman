@@ -1,7 +1,8 @@
 import * as path from "path";
 import * as fs from "fs";
-import { AssertionError } from "@foreman/error";
-const { Test } = require("tap");
+import { cpus } from "os";
+import * as exec from "execa";
+import { parse, AssertionError } from "@foreman/error";
 const Parser = require("tap-parser");
 
 const concat = <T>(a: Array<T>, b: Array<T>) => a.concat(b);
@@ -10,7 +11,6 @@ const read = (path: string) => fs.readFileSync(path, "utf8");
 
 export type Options = {
   readonly require?: Array<string>;
-  readonly concurrency?: number;
   readonly timeout?: number;
 };
 
@@ -51,14 +51,13 @@ export async function spawn(
       let error: AssertionError | undefined;
 
       if (diag) {
-        const { stack, at: { file, line, column } } = diag;
+        const { stack, at, actual, expected } = diag;
+        const { file, line, column } = parse(at);
 
         error = new AssertionError(
           name,
           read(file),
-          "found" in diag && "wanted" in diag
-            ? { actual: diag.found, expected: diag.wanted }
-            : null,
+          "actual" in diag && "expected" in diag ? { actual, expected } : null,
           { line, column }
         );
 
@@ -86,7 +85,7 @@ export async function spawn(
     });
   }
 
-  parser.on("child", (test: any) => attach(test, results));
+  attach(parser, results);
 
   const requires = (options.require || [])
     .map(module => ["--require", module])
@@ -94,22 +93,19 @@ export async function spawn(
 
   const spec = path.relative(process.cwd(), file);
 
-  const test = new Test();
-
-  test.jobs = options.concurrency || 1;
-
-  test.pipe(parser);
-
-  await test.spawn(
+  const child = exec(
     "node",
     ["--require", "@foreman/register", ...requires, spec],
     {
-      timeout: options.timeout || null,
-      // Buffer the spawned test in order to benefit from parallelism
-      buffered: true
-    },
-    spec
+      timeout: options.timeout || 0
+    }
   );
+
+  child.stdout.pipe(parser);
+
+  try {
+    await child;
+  } catch (err) {}
 
   return results[0];
 }
