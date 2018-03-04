@@ -34,6 +34,17 @@ const patterns: Array<Pattern> = [
       line: Number(match[3]),
       column: Number(match[4])
     })
+  },
+  {
+    // Example:
+    // foo (file.ts:9:5)
+    pattern: /^(.+)\(([^:]+):(\d+):(\d+)\)$/,
+    parse: match => ({
+      file: match[2],
+      message: match[1],
+      line: Number(match[3]),
+      column: Number(match[4])
+    })
   }
 ];
 
