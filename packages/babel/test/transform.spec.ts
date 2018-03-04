@@ -4,9 +4,8 @@ const { test } = require("tap");
 test("transform", async (t: any) => {
   let code;
   try {
-    code = await transform("let foo === 2;", { presets: ["@babel/env"] });
+    code = transform("let foo = 2;", { presets: ["@babel/env"] });
   } catch (err) {
-    console.log(err.frame);
     return;
   }
 

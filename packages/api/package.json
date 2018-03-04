@@ -11,5 +11,8 @@
   "license": "MIT",
   "scripts": {
     "prepare": "tsc --outDir dist"
+  },
+  "dependencies": {
+    "pirates": "^3.0.2"
   }
 }

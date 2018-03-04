@@ -1,4 +1,1 @@
-export type Transform<Options> = (
-  source: string,
-  options?: Options
-) => Promise<string>;
+export type Transform<Options> = (source: string, options?: Options) => string;

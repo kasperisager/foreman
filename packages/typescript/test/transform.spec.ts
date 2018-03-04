@@ -4,9 +4,8 @@ const { test } = require("tap");
 test("transform", async (t: any) => {
   let code;
   try {
-    code = await transform("const foo: number = 2/;");
+    code = transform("let foo: number = 2;");
   } catch (err) {
-    console.log(err.frame);
     return;
   }
 
