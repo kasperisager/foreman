@@ -1,11 +1,10 @@
+import { sourceMaps } from "@foreman/api";
 const { install } = require("source-map-support");
-
-const maps: Map<string, string> = new Map();
 
 install({
   environment: "node",
   retrieveSourceMap(filename: string) {
-    const map = maps.get(filename);
+    const map = sourceMaps.get(filename);
 
     if (map) {
       return { url: null, map };
@@ -17,6 +16,6 @@ install({
 
 for (const pkg of ["babel", "typescript"]) {
   try {
-    require(`@foreman/${pkg}/register`)(maps);
+    require(`@foreman/${pkg}/register`);
   } catch (err) {}
 }
