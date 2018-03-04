@@ -7,7 +7,7 @@ install({
     const map = sourceMaps.get(filename);
 
     if (map) {
-      return { url: null, map };
+      return { url: filename, map };
     }
 
     return null;
