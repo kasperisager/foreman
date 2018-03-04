@@ -9,17 +9,23 @@ import { getOptions } from "./get-options";
 
 const { assign } = Object;
 
-export const transform: Transform<Options> = (
-  source: string,
-  options: Options = {}
-): string => {
+export const transform: Transform<Options> = (source, options = {}) => {
   options = assign({}, options, { reportDiagnostics: true });
 
   if (options.fileName) {
-    assign(options, { compilerOptions: getOptions(options.fileName) });
+    assign(options, {
+      compilerOptions: assign(
+        {},
+        getOptions(options.fileName),
+        options.compilerOptions
+      )
+    });
   }
 
-  const { outputText, diagnostics } = transpileModule(source, options);
+  const { outputText, diagnostics, sourceMapText } = transpileModule(
+    source,
+    options
+  );
 
   if (diagnostics && diagnostics.length !== 0) {
     const [{ file, start, messageText }] = diagnostics;
@@ -41,5 +47,5 @@ export const transform: Transform<Options> = (
     throw error;
   }
 
-  return outputText;
+  return { code: outputText, map: sourceMapText };
 };

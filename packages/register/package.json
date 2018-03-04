@@ -11,5 +11,8 @@
   "license": "MIT",
   "scripts": {
     "prepare": "tsc --outDir dist"
+  },
+  "dependencies": {
+    "source-map-support": "^0.5.3"
   }
 }

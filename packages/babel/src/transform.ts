@@ -2,12 +2,10 @@ import { Transform } from "@foreman/api";
 import { SourceError, parse } from "@foreman/error";
 const babel = require("@babel/core");
 
-export const transform: Transform<any> = (
-  source: string,
-  options: any = {}
-): string => {
+export const transform: Transform<any> = (source, options = {}) => {
   try {
-    return babel.transformSync(source, options).code;
+    const { code, map } = babel.transformSync(source, options);
+    return { code, map };
   } catch (err) {
     const { message, line, column } = parse(err.message);
 

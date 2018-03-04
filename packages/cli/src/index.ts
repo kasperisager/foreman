@@ -11,7 +11,7 @@ const { argv } = yargs.command("* <script>", "", {
     const script = path.resolve(argv.script);
 
     if (script !== null) {
-      const args = ["--require", "@foreman/register"];
+      const args = ["--require", require.resolve("@foreman/register")];
 
       args.push(script);
 
