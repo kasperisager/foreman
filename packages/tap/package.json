@@ -13,9 +13,9 @@
     "prepare": "tsc --outDir dist"
   },
   "dependencies": {
+    "@foreman/error": "^1.0.0",
+    "@foreman/register": "^1.0.0",
     "tap": "^11.0.1",
-    "tap-parser": "^7.0.0",
-    "ts-node": "^5.0.0",
-    "typescript": "^2.7.2"
+    "tap-parser": "^7.0.0"
   }
 }

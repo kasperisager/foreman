@@ -11,7 +11,7 @@ const { argv } = yargs.command("* <script>", "", {
     const script = path.resolve(argv.script);
 
     if (script !== null) {
-      const args = [];
+      const args = ["--require", "@foreman/register"];
 
       args.push(script);
 
@@ -19,15 +19,7 @@ const { argv } = yargs.command("* <script>", "", {
         args.push(...argv._);
       }
 
-      let node: string = "node";
-
-      switch (path.extname(script)) {
-        case ".ts":
-        case ".tsx":
-          node = "ts-node";
-      }
-
-      exec(node, args, { stdio: "inherit" })
+      exec("node", args, { stdio: "inherit" })
         .then(({ code }) => {
           process.exit(code);
         })

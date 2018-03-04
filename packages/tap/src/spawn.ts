@@ -100,21 +100,13 @@ export async function spawn(
 
   test.pipe(parser);
 
-  let node: string = "node";
-
-  switch (path.extname(file)) {
-    case ".ts":
-    case ".tsx":
-      node = "ts-node";
-  }
-
   await test.spawn(
-    node,
-    [...requires, spec],
+    "node",
+    ["--require", "@foreman/register", ...requires, spec],
     {
+      timeout: options.timeout || null,
       // Buffer the spawned test in order to benefit from parallelism
-      buffered: true,
-      timeout: options.timeout || null
+      buffered: true
     },
     spec
   );

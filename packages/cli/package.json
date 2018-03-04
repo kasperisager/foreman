@@ -16,11 +16,10 @@
     "prepare": "tsc --outDir dist"
   },
   "dependencies": {
+    "@foreman/register": "^1.0.0",
     "@types/execa": "^0.8.1",
     "@types/yargs": "^10.0.1",
     "execa": "^0.9.0",
-    "ts-node": "^5.0.0",
-    "typescript": "^2.7.2",
     "yargs": "^10.1.1"
   }
 }
