@@ -4,9 +4,6 @@ import { transform } from "./transform";
 register({
   extensions: [".ts", ".tsx"],
   transform: (source, filename) => {
-    return transform(source, {
-      fileName: filename,
-      compilerOptions: { sourceMap: true }
-    });
+    return transform(source, { fileName: filename });
   }
 });

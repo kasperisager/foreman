@@ -4,6 +4,6 @@ import { transform } from "./transform";
 register({
   extensions: [".js", ".jsx"],
   transform: (source, filename) => {
-    return transform(source, { filename, sourceMaps: true });
+    return transform(source, { filename });
   }
 });
