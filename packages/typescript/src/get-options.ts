@@ -1,11 +1,12 @@
 /// <reference types="node" />
 
 import * as path from "path";
+import * as fs from "fs";
 import * as TS from "typescript";
 import * as tsconfig from "tsconfig";
 
-export function getOptions(path: string): TS.CompilerOptions {
-  const configPath = tsconfig.findSync(path);
+export function getOptions(fileName: string): TS.CompilerOptions {
+  const configPath = tsconfig.findSync(fileName);
 
   if (!configPath) {
     throw new Error("No TypeScript configuration found");
@@ -13,13 +14,13 @@ export function getOptions(path: string): TS.CompilerOptions {
 
   const { config } = TS.parseConfigFileTextToJson(
     configPath,
-    TS.sys.readFile(configPath, "utf8") || ""
+    fs.readFileSync(configPath).toString()
   );
 
   const { options } = TS.parseJsonConfigFileContent(
     config,
     TS.sys,
-    TS.sys.getCurrentDirectory()
+    path.dirname(configPath)
   );
 
   return options;
