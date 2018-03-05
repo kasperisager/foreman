@@ -14,11 +14,7 @@ export const transform: Transform<Options> = (source, options = {}) => {
 
   if (options.fileName) {
     assign(options, {
-      compilerOptions: assign(
-        {},
-        getOptions(options.fileName),
-        options.compilerOptions
-      )
+      compilerOptions: getOptions(options.fileName)
     });
   }
 
