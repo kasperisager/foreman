@@ -19,15 +19,12 @@ export interface Assertion {
   readonly id: number;
   readonly ok: boolean;
   readonly skip: boolean;
-  readonly todo: boolean;
   readonly error?: Error;
 }
 
 export interface Result {
-  readonly name: string;
   readonly ok: boolean;
   readonly assertions: Array<Assertion>;
-  readonly children: Array<Result>;
 }
 
 export async function spawn(
@@ -35,57 +32,38 @@ export async function spawn(
   options: Options = {}
 ): Promise<Result> {
   const parser = new Parser();
-  const results: Array<Result> = [];
+  const assertions: Array<Assertion> = [];
 
-  function attach(test: any, results: Array<any>): void {
-    const children: Array<Result> = [];
-    const assertions: Array<Assertion> = [];
+  parser.on("extra", (line: string) => console.log(line.trim()));
 
-    test.on("extra", (line: string) => console.log(line.trim()));
+  parser.on("assert", (assertion: any) => {
+    const { name, id, ok, skip, diag } = assertion;
 
-    test.on("child", (test: any) => attach(test, children));
+    let error: AssertionError | undefined;
 
-    test.on("assert", (assertion: any) => {
-      const { name, id, ok, skip, todo, diag } = assertion;
+    if (diag) {
+      const { stack, at, actual, expected } = diag;
+      const { file, line, column } = parse(at);
 
-      let error: AssertionError | undefined;
-
-      if (diag) {
-        const { stack, at, actual, expected } = diag;
-        const { file, line, column } = parse(at);
-
-        error = new AssertionError(
-          name,
-          read(file),
-          "actual" in diag && "expected" in diag ? { actual, expected } : null,
-          { line, column }
-        );
-
-        error.file = file;
-        error.stack = stack;
-      }
-
-      assertions.push({
+      error = new AssertionError(
         name,
-        id,
-        ok,
-        skip: skip || false,
-        todo: todo || false,
-        error
-      });
-    });
+        read(file),
+        "actual" in diag && "expected" in diag ? { actual, expected } : null,
+        { line, column }
+      );
 
-    test.on("complete", (result: any) => {
-      results.push({
-        name: test.name,
-        ok: result.ok,
-        assertions,
-        children
-      });
-    });
-  }
+      error.file = file;
+      error.stack = stack;
+    }
 
-  attach(parser, results);
+    assertions.push({
+      name,
+      id,
+      ok,
+      skip: skip || false,
+      error
+    });
+  });
 
   const requires = (options.require || [])
     .map(module => ["--require", module])
@@ -107,5 +85,5 @@ export async function spawn(
     await child;
   } catch (err) {}
 
-  return results[0];
+  return { ok: assertions.every(assertion => assertion.ok), assertions };
 }
