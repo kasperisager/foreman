@@ -10,7 +10,6 @@ const concat = <T>(a: Array<T>, b: Array<T>) => a.concat(b);
 const read = (path: string) => fs.readFileSync(path, "utf8");
 
 export type Options = {
-  readonly require?: Array<string>;
   readonly timeout?: number;
 };
 
@@ -65,19 +64,11 @@ export async function spawn(
     });
   });
 
-  const requires = (options.require || [])
-    .map(module => ["--require", module])
-    .reduce(concat, []);
-
   const spec = path.relative(process.cwd(), file);
 
-  const child = exec(
-    "node",
-    ["--require", "@foreman/register", ...requires, spec],
-    {
-      timeout: options.timeout || 0
-    }
-  );
+  const child = exec("node", ["--require", "@foreman/register", spec], {
+    timeout: options.timeout || 0
+  });
 
   child.stdout.pipe(parser);
 
