@@ -1,4 +1,4 @@
-export * from "typecomp";
+export { Workspace } from "typecomp";
 export * from "./compile";
 export * from "./diagnose";
 export * from "./register";
