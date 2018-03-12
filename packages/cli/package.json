@@ -13,7 +13,7 @@
   "author": "Kasper Isager <kasperisager@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "prepare": "tsc --outDir dist"
+    "prepare": "tsc"
   },
   "dependencies": {
     "@foreman/register": "^0.0.0",

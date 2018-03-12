@@ -1,8 +1,6 @@
 {
   "name": "foreman",
-  "version": "1.0.0",
   "description": "Build system tools for getting things done",
-  "main": "index.js",
   "repository": "https://github.com/kasperisager/foreman",
   "author": "Kasper Isager <kasperisager@gmail.com>",
   "license": "MIT",
