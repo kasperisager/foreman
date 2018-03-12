@@ -13,7 +13,7 @@
     "prepare": "tsc --outDir dist"
   },
   "dependencies": {
-    "@foreman/api": "^1.0.0",
+    "@foreman/api": "^0.0.0",
     "source-map-support": "^0.5.3"
   }
 }

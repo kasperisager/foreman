@@ -13,8 +13,8 @@
     "prepare": "tsc --outDir dist"
   },
   "dependencies": {
-    "@foreman/api": "^1.0.0",
-    "@foreman/error": "^1.0.0",
+    "@foreman/api": "^0.0.0",
+    "@foreman/error": "^0.0.0",
     "@types/node": "^9.4.6",
     "tsconfig": "^7.0.0",
     "typescript": "^2.7.2"
