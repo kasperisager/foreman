@@ -1,20 +1,16 @@
-import { Diagnostic, flattenDiagnosticMessageText } from "typescript";
+import { flattenDiagnosticMessageText } from "typescript";
 import { read } from "@foreman/fs";
 import { SourceError } from "@foreman/error";
-import { LanguageService } from "./services";
+import { Workspace } from "typecomp";
 
 export async function diagnose(
-  service: LanguageService,
+  workspace: Workspace,
   path: string
 ): Promise<Array<SourceError>> {
-  service.getHost().addFile(path);
-
-  const semantic = service.getSemanticDiagnostics(path);
-  const syntactic = service.getSyntacticDiagnostics(path);
-
+  const diagnostics = workspace.diagnose(path);
   const source = await read(path);
 
-  return [...semantic, ...syntactic].map(diagnostic => {
+  return diagnostics.map(diagnostic => {
     const { file, start, messageText } = diagnostic;
 
     const { line, character } = file

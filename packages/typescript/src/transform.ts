@@ -1,11 +1,38 @@
+import * as path from "path";
+import * as fs from "fs";
 import { Transform } from "@foreman/api";
 import { SourceError } from "@foreman/error";
 import {
-  transpileModule,
   TranspileOptions as Options,
-  flattenDiagnosticMessageText
+  CompilerOptions,
+  sys,
+  transpileModule,
+  flattenDiagnosticMessageText,
+  parseConfigFileTextToJson,
+  parseJsonConfigFileContent
 } from "typescript";
-import { getOptions } from "./get-options";
+import { findSync } from "tsconfig";
+
+function getOptions(
+  fileName: string
+): { directory: string; options: CompilerOptions } {
+  const configPath = findSync(fileName);
+
+  if (!configPath) {
+    throw new Error("No TypeScript configuration found");
+  }
+
+  const { config } = parseConfigFileTextToJson(
+    configPath,
+    fs.readFileSync(configPath).toString()
+  );
+
+  const directory = path.dirname(configPath);
+
+  const { options } = parseJsonConfigFileContent(config, sys, directory);
+
+  return { directory, options };
+}
 
 const { assign } = Object;
 
@@ -14,7 +41,7 @@ export const transform: Transform<Options> = (source, options = {}) => {
 
   if (options.fileName) {
     assign(options, {
-      compilerOptions: getOptions(options.fileName)
+      compilerOptions: getOptions(options.fileName).options
     });
   }
 
