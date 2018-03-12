@@ -4,9 +4,10 @@
   "description": "Path utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
-  "repository":
-    "https://github.com/kasperisager/foreman/tree/master/packages/path",
+  "files": [
+    "dist"
+  ],
+  "repository": "https://github.com/kasperisager/foreman/tree/master/packages/path",
   "author": "Kasper Isager <kasperisager@gmail.com>",
   "license": "MIT",
   "scripts": {

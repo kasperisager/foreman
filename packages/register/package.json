@@ -4,9 +4,10 @@
   "description": "Register require extensions for Foreman transformations",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
-  "repository":
-    "https://github.com/kasperisager/foreman/tree/master/packages/register",
+  "files": [
+    "dist"
+  ],
+  "repository": "https://github.com/kasperisager/foreman/tree/master/packages/register",
   "author": "Kasper Isager <kasperisager@gmail.com>",
   "license": "MIT",
   "scripts": {

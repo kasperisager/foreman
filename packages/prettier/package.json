@@ -4,9 +4,10 @@
   "description": "Prettier utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
-  "repository":
-    "https://github.com/kasperisager/foreman/tree/master/packages/prettier",
+  "files": [
+    "dist"
+  ],
+  "repository": "https://github.com/kasperisager/foreman/tree/master/packages/prettier",
   "author": "Kasper Isager <kasperisager@gmail.com>",
   "license": "MIT",
   "scripts": {

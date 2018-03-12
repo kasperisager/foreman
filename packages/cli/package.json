@@ -4,12 +4,14 @@
   "description": "A simple CLI for executing build scripts",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist", "bin"],
+  "files": [
+    "dist",
+    "bin"
+  ],
   "bin": {
     "foreman": "bin/foreman.js"
   },
-  "repository":
-    "https://github.com/kasperisager/foreman/tree/master/packages/cli",
+  "repository": "https://github.com/kasperisager/foreman/tree/master/packages/cli",
   "author": "Kasper Isager <kasperisager@gmail.com>",
   "license": "MIT",
   "scripts": {

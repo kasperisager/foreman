@@ -4,9 +4,10 @@
   "description": "TAP utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
-  "repository":
-    "https://github.com/kasperisager/foreman/tree/master/packages/tap",
+  "files": [
+    "dist"
+  ],
+  "repository": "https://github.com/kasperisager/foreman/tree/master/packages/tap",
   "author": "Kasper Isager <kasperisager@gmail.com>",
   "license": "MIT",
   "scripts": {

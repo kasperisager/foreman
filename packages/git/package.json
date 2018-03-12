@@ -4,9 +4,10 @@
   "description": "git utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
-  "repository":
-    "https://github.com/kasperisager/foreman/tree/master/packages/git",
+  "files": [
+    "dist"
+  ],
+  "repository": "https://github.com/kasperisager/foreman/tree/master/packages/git",
   "author": "Kasper Isager <kasperisager@gmail.com>",
   "license": "MIT",
   "scripts": {
