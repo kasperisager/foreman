@@ -4,10 +4,9 @@
   "description": "Babel utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "repository": "https://github.com/kasperisager/foreman/tree/master/packages/babel",
+  "files": ["dist", "register.js"],
+  "repository":
+    "https://github.com/kasperisager/foreman/tree/master/packages/babel",
   "author": "Kasper Isager <kasperisager@gmail.com>",
   "license": "MIT",
   "scripts": {
