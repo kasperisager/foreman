@@ -1,6 +1,6 @@
 {
   "name": "@foreman/notify",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Console and desktop notification utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

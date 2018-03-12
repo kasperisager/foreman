@@ -1,6 +1,6 @@
 {
   "name": "@foreman/path",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Path utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

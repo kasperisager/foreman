@@ -1,6 +1,6 @@
 {
   "name": "@foreman/api",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Definitions of Foreman APIs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
