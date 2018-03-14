@@ -1,6 +1,6 @@
 {
   "name": "@foreman/typescript",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "TypeScript utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@foreman/api": "^0.0.0",
-    "@foreman/error": "^0.0.0",
+    "@foreman/error": "^0.0.6",
     "@types/node": "^9.4.6",
     "tsconfig": "^7.0.0",
     "typecomp": "^1.0.5",
