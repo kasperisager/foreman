@@ -1,0 +1,22 @@
+{
+  "name": "@foreman/dependant",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "repository":
+    "https://github.com/kasperisager/foreman/tree/master/packages/dependant",
+  "author": "Kasper Isager <kasperisager@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "tsc"
+  },
+  "dependencies": {
+    "@types/micromatch": "^3.1.0",
+    "@types/resolve-from": "^0.0.18",
+    "dependency-graph": "^0.7.0",
+    "micromatch": "^3.1.9",
+    "resolve-from": "^4.0.0"
+  }
+}
