@@ -3676,10 +3676,6 @@ tar@^2.2.1:
     fstream "^1.0.2"
     inherits "2"
 
-tarjan-graph@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/tarjan-graph/-/tarjan-graph-1.0.1.tgz#e80ec1060fe2676aee18877637537b85e40534c3"
-
 temp-dir@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/temp-dir/-/temp-dir-1.0.0.tgz#0a7c0ea26d3a39afa7e0ebea9c1fc0bc4daa011d"
@@ -3798,9 +3794,9 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
-typecomp@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/typecomp/-/typecomp-1.0.4.tgz#fa4b0db52de48ed6801202dced6b585ac132da81"
+typecomp@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/typecomp/-/typecomp-1.0.5.tgz#96ba2854c545164febf3dea3596b9a5359270c67"
   dependencies:
     "@types/node" "^9.4.6"
     tsconfig "^7.0.0"
