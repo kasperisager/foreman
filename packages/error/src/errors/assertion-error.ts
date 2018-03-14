@@ -9,6 +9,8 @@ export interface Assertion {
 }
 
 export class AssertionError extends SourceError {
+  public readonly name: string = "AssertionError";
+
   private _diff?: string;
 
   public get diff(): string | undefined {
@@ -54,5 +56,5 @@ export class AssertionError extends SourceError {
 }
 
 export function isAssertionError(error: Error): error is AssertionError {
-  return error.constructor === AssertionError;
+  return error instanceof AssertionError;
 }

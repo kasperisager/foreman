@@ -62,5 +62,5 @@ export class SourceError implements Error {
 }
 
 export function isSourceError(error: Error): error is SourceError {
-  return error.constructor === SourceError;
+  return error instanceof SourceError;
 }

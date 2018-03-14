@@ -47,7 +47,7 @@ export function notify({
     let message: string = "";
 
     if (isSourceError(error) || isAssertionError(error)) {
-      message += `\n${error}`;
+      message += `\n${error.toString()}`;
     } else if (error.stack) {
       message += `\n${chalk.dim(error.stack)}`;
     }

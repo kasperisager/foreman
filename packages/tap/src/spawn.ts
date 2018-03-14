@@ -18,7 +18,7 @@ export interface Assertion {
   readonly id: number;
   readonly ok: boolean;
   readonly skip: boolean;
-  readonly error?: Error;
+  readonly error?: AssertionError;
 }
 
 export interface Result {
@@ -47,7 +47,9 @@ export async function spawn(
       error = new AssertionError(
         name,
         read(file),
-        "actual" in diag && "expected" in diag ? { actual, expected } : null,
+        "actual" in diag && "expected" in diag
+          ? { actual: evaluate(actual), expected: evaluate(expected) }
+          : null,
         { line, column }
       );
 
@@ -77,4 +79,8 @@ export async function spawn(
   } catch (err) {}
 
   return { ok: assertions.every(assertion => assertion.ok), assertions };
+}
+
+function evaluate(code: any): any {
+  return eval(String(code));
 }
