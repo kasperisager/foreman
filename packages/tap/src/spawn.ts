@@ -82,5 +82,11 @@ export async function spawn(
 }
 
 function evaluate(code: any): any {
-  return eval(String(code));
+  code = String(code);
+
+  try {
+    return eval(code);
+  } catch (err) {
+    return code;
+  }
 }
