@@ -4,11 +4,9 @@
   "description": "TypeScript utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "register.js"
-  ],
-  "repository": "https://github.com/kasperisager/foreman/tree/master/packages/typescript",
+  "files": ["dist", "register.js"],
+  "repository":
+    "https://github.com/kasperisager/foreman/tree/master/packages/typescript",
   "author": "Kasper Isager <kasperisager@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -18,7 +16,12 @@
     "@foreman/api": "^0.0.0",
     "@foreman/error": "^0.1.0",
     "tsconfig": "^7.0.0",
-    "typecomp": "^1.0.5",
+    "typecomp": "^2.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^2.8.1"
+  },
+  "devDependencies": {
     "typescript": "^2.8.1"
   }
 }
