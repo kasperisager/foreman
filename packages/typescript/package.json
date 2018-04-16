@@ -1,12 +1,14 @@
 {
   "name": "@foreman/typescript",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "TypeScript utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist", "register.js"],
-  "repository":
-    "https://github.com/kasperisager/foreman/tree/master/packages/typescript",
+  "files": [
+    "dist",
+    "register.js"
+  ],
+  "repository": "https://github.com/kasperisager/foreman/tree/master/packages/typescript",
   "author": "Kasper Isager <kasperisager@gmail.com>",
   "license": "MIT",
   "scripts": {
