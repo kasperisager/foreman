@@ -1,4 +1,4 @@
-import * as exec from "execa";
+const exec = require("execa");
 
 export async function git(
   command: string,

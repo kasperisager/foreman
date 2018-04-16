@@ -1,6 +1,6 @@
 import * as crypto from "crypto";
 import { DepGraph as Graph } from "dependency-graph";
-import { some } from "micromatch";
+const { some } = require("micromatch");
 
 export interface MatchOptions {
   include?: string | Array<string>;

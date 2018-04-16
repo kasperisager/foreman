@@ -1,4 +1,5 @@
-import * as chokidar from "chokidar";
+import { FSWatcher } from "fs";
+const chokidar = require("chokidar");
 
 export type Event = "add" | "change" | "unlink";
 
@@ -6,7 +7,7 @@ export async function watch<E extends Event>(
   paths: string | Array<string>,
   events: Array<E>,
   callback: (event: E, path: string) => Promise<void>
-): Promise<chokidar.FSWatcher> {
+): Promise<FSWatcher> {
   const watcher = chokidar.watch(paths, {
     ignoreInitial: true
   });
@@ -56,10 +57,10 @@ export async function watch<E extends Event>(
   };
 
   for (const event of events) {
-    watcher.on(event, path => handle(event, path));
+    watcher.on(event, (path: string) => handle(event, path));
   }
 
-  return new Promise<chokidar.FSWatcher>(resolve => {
+  return new Promise<FSWatcher>(resolve => {
     watcher.on("ready", () => resolve(watcher));
   });
 }

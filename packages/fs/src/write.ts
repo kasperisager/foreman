@@ -1,6 +1,6 @@
 import { dirname } from "path";
 import * as fs from "fs";
-import * as makeDir from "make-dir";
+const makeDir = require("make-dir");
 
 export function write(path: string, data: string): Promise<void> {
   return makeDir(dirname(path)).then(

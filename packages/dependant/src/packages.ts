@@ -1,7 +1,7 @@
 import * as path from "path";
 import * as fs from "fs";
-import * as resolveFrom from "resolve-from";
 import { Dependants, TraverseOptions } from "./dependants";
+const resolveFrom = require("resolve-from");
 
 const { keys, assign } = Object;
 

@@ -1,13 +1,13 @@
 import * as path from "path";
-import * as yargs from "yargs";
-import * as exec from "execa";
+const yargs = require("yargs");
+const exec = require("execa");
 
 const { argv } = yargs.command("* <script>", "", {
-  builder: argv =>
+  builder: (argv: any) =>
     argv.positional("script", {
       description: "The script to execute"
     }),
-  handler: argv => {
+  handler: (argv: any) => {
     const script = path.resolve(argv.script);
 
     if (script !== null) {
@@ -20,11 +20,11 @@ const { argv } = yargs.command("* <script>", "", {
       }
 
       exec("node", args, { stdio: "inherit" })
-        .then(({ code }) => {
-          process.exit(code);
+        .then((result: any) => {
+          process.exit(result.code);
         })
-        .catch(({ code }) => {
-          process.exit(code);
+        .catch((result: any) => {
+          process.exit(result.code);
         });
     }
   }

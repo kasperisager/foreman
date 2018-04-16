@@ -1,8 +1,8 @@
 import * as path from "path";
 import * as fs from "fs";
 import { cpus } from "os";
-import * as exec from "execa";
 import { parse, AssertionError } from "@foreman/error";
+const exec = require("execa");
 const Parser = require("tap-parser");
 
 const concat = <T>(a: Array<T>, b: Array<T>) => a.concat(b);
