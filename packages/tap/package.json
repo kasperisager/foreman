@@ -1,20 +1,21 @@
 {
   "name": "@foreman/tap",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "TAP utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
-  "repository":
-    "https://github.com/kasperisager/foreman/tree/master/packages/tap",
+  "files": [
+    "dist"
+  ],
+  "repository": "https://github.com/kasperisager/foreman/tree/master/packages/tap",
   "author": "Kasper Isager <kasperisager@gmail.com>",
   "license": "MIT",
   "scripts": {
     "prepare": "tsc"
   },
   "dependencies": {
-    "@foreman/error": "^0.0.6",
-    "@foreman/register": "^0.0.0",
+    "@foreman/error": "^0.1.0",
+    "@foreman/register": "^0.1.0",
     "execa": "^0.10.0",
     "tap-parser": "^7.0.0"
   }

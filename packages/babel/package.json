@@ -1,12 +1,14 @@
 {
   "name": "@foreman/babel",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "Babel utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist", "register.js"],
-  "repository":
-    "https://github.com/kasperisager/foreman/tree/master/packages/babel",
+  "files": [
+    "dist",
+    "register.js"
+  ],
+  "repository": "https://github.com/kasperisager/foreman/tree/master/packages/babel",
   "author": "Kasper Isager <kasperisager@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -15,7 +17,7 @@
   "dependencies": {
     "@babel/core": "^7.0.0-beta.44",
     "@foreman/api": "^0.0.0",
-    "@foreman/error": "^0.0.6"
+    "@foreman/error": "^0.1.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.0.0-beta.44"
