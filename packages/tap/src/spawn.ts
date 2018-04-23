@@ -85,7 +85,7 @@ function evaluate(code: any): any {
   code = String(code);
 
   try {
-    return eval(code);
+    return eval(`(${code})`);
   } catch (err) {
     return code;
   }
