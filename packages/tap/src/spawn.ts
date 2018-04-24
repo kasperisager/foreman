@@ -33,7 +33,7 @@ export async function spawn(
   const parser = new Parser();
   const assertions: Array<Assertion> = [];
 
-  parser.on("extra", (line: string) => console.log(line.trim()));
+  parser.on("extra", (line: string) => console.log(line.replace(/\n/, "")));
 
   parser.on("assert", (assertion: any) => {
     const { name, id, ok, skip, diag } = assertion;
