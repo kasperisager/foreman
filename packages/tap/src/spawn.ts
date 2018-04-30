@@ -44,9 +44,14 @@ export async function spawn(
       const { stack, at, actual, expected } = diag;
       const { file, line, column } = parse(at);
 
+      let source: string = "";
+      try {
+        source = read(file);
+      } catch (err) {}
+
       error = new AssertionError(
         name,
-        read(file),
+        source,
         "actual" in diag && "expected" in diag
           ? { actual: evaluate(actual), expected: evaluate(expected) }
           : null,
