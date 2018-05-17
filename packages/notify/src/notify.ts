@@ -1,61 +1,56 @@
 import chalk from "chalk";
-import { isSourceError, isAssertionError } from "@foreman/error";
 
-const wsk = require("wsk-notify");
+const { Signale } = require("signale");
+const { ellipsis } = require("figures");
+
+const logger = new Signale({
+  types: {
+    skip: {
+      badge: ellipsis,
+      color: "gray",
+      label: "skipping"
+    }
+  }
+});
+
+logger.config({ displayTimestamp: true });
 
 export interface Notification {
   readonly message: string;
   readonly value?: string;
-  readonly type?:
-    | "compile"
-    | "watch"
-    | "error"
-    | "change"
-    | "add"
-    | "reload"
-    | "success"
-    | "remove"
-    | "serve";
-  readonly desktop?: boolean;
-  readonly console?: boolean;
+  readonly type?: "info" | "success" | "error" | "warning" | "watch" | "skip";
   readonly error?: Error;
-}
-
-function log(message: string) {
-  console.log(message);
 }
 
 export function notify({
   message = "",
   value = "",
   type,
-  desktop = true,
-  console = true,
   error
 }: Notification): void {
-  let output: string = wsk({
-    message,
-    value,
-    display: type,
-    extend: {
-      desktop
-    },
-    silent: true
-  }).trim();
+  value = chalk.dim(value);
 
-  if (type === "error" && error) {
-    let message: string = "";
-
-    if (isSourceError(error) || isAssertionError(error)) {
-      message += `\n${error.toString()}`;
-    } else if (error.stack) {
-      message += `\n${chalk.dim(error.stack)}`;
-    }
-
-    output += "\n" + message + "\n";
-  }
-
-  if (console) {
-    log(output);
+  switch (type) {
+    case "info":
+    default:
+      logger.info(message, value);
+      break;
+    case "success":
+      logger.success(message, value);
+      break;
+    case "error":
+      logger.error(message, value);
+      if (error) {
+        console.log(`\n${error.toString()}\n`);
+      }
+      break;
+    case "warning":
+      logger.warning(message, value);
+      break;
+    case "watch":
+      logger.watch(message, value);
+      break;
+    case "skip":
+      logger.skip(message, value);
   }
 }
