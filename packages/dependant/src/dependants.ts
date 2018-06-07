@@ -11,7 +11,7 @@ export interface DependantsOptions extends MatchOptions {}
 export interface TraverseOptions extends MatchOptions {}
 
 export class Dependants {
-  private readonly graph: Graph<never> = new Graph();
+  private readonly graph: Graph<never> = new Graph({});
   private readonly options: DependantsOptions;
 
   public constructor(options: DependantsOptions = {}) {

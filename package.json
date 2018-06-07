@@ -9,13 +9,15 @@
     "prepare": "lerna run prepare",
     "precommit": "pretty-quick --staged"
   },
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "husky": "^0.14.3",
     "lerna": "^2.9.0",
-    "prettier": "1.12.0",
+    "prettier": "1.13.4",
     "pretty-quick": "^1.2.0",
     "tape": "^4.9.0",
-    "typescript": "^2.8.1"
+    "typescript": "^2.9.1"
   }
 }

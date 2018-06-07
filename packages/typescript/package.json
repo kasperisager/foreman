@@ -23,9 +23,9 @@
     "typecomp": "^2.1.0"
   },
   "peerDependencies": {
-    "typescript": "^2.8.2"
+    "typescript": "^2.9.1"
   },
   "devDependencies": {
-    "typescript": "^2.8.2"
+    "typescript": "^2.9.1"
   }
 }
