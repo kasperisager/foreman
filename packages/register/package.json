@@ -1,6 +1,6 @@
 {
   "name": "@foreman/register",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "description": "Register require extensions for Foreman transformations",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

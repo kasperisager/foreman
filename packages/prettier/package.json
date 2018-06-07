@@ -1,6 +1,6 @@
 {
   "name": "@foreman/prettier",
-  "version": "0.2.0",
+  "version": "0.5.0",
   "description": "Prettier utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
